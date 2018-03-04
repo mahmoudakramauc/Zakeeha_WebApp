@@ -1,13 +1,24 @@
 from flask import Flask, render_template
 from flask_restful import Resource, Api, abort
+from flask_httpauth import HTTPBasicAuth
 
 app = Flask(__name__)
 api = Api(app)
+auth = HTTPBasicAuth()
+
+@auth.get_password
+def get_password(username):
+    if username == 'mahmo':
+        return 'elsha';
+    return None
 
 deroos = {'active':[
-                 {'scholar_name': 'alhabib',
+                 {
+                  'id':1,
+                  'scholar_name': 'alhabib',
                   'sex': 'm',
                   'topic': 'tazkeya',
+                  'title': 'ketab al makased',
                   'location': 'https://goo.gl/maps/zj7RqYZAcqk',
                   'schedule':
                                 {'weekly_or_monthly': 'w',
@@ -17,9 +28,12 @@ deroos = {'active':[
                                  'end_time' : '10:00'
                                 }
                   },
-                 {'scholar_name': 'mo3ez mas3ood',
+                 {
+                  'id':2,
+                  'scholar_name': 'mo3ez mas3ood',
                   'sex': 'm',
                   'topic': 'tazkeya',
+                  'title': 'ketab al makased',
                   'location': 'https://goo.gl/maps/zj7RqYZAcqk',
                   'schedule':
                                 {'weekly_or_monthly': 'm',
@@ -28,12 +42,30 @@ deroos = {'active':[
                                  'start_time': '9:00',
                                  'end_time' : '10:00'
                                 }
+                  },
+                  {
+                  'id':3,
+                  'scholar_name': 'Mohammad Mehanna',
+                  'sex': 'm',
+                  'topic': 'tazkeya',
+                  'title': 'ketab al makased',
+                  'location': 'https://goo.gl/maps/zj7RqYZAcqk',
+                  'schedule':
+                                {'weekly_or_monthly': 'm',
+                                'week_day': 'Tue',
+                                'am_pm': 'AM',
+                                'start_time': '9:00',
+                                'end_time' : '10:00'
+                                }
                   }],
 
           'inactive':[
-                  {'scholar_name': 'amr werdany',
+                  {
+                  'id':4,
+                  'scholar_name': 'amr werdany',
                   'sex': 'm',
                   'topic': 'fiqh',
+                  'title': 'ketab al makased',
                   'location': 'https://goo.gl/maps/zj7RqYZAcqk',
                   'schedule':
                                 {'weekly_or_monthly': 'm',
