@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Dars Details</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid orange;
+                padding: 10px;
+            }
+        </style>
+
+
+
+
+  <body>
+  {% for dars in deroos_by_scholar_name %}
+
+  <h2 align="center"> {{ deroos_by_scholar_name[0]["scholar_name"] }} dars details</h2>
+
+    <table>
+      <tr>
+          <th>Scholar Name</th>
+          <th>Sex</th>
+          <th>Topic</th>
+          <th>Title</th>
+          <th>weekly_or_monthly</th>
+          <th>week_day</th>
+          <th>am_pm</th>
+          <th>start_time</th>
+          <th>end_time</th>
+      </tr>
+
+      <tr>
+          <td align="center">{{ dars["scholar_name"] }}</td>
+          <td align="center">{{ dars["sex"] }}</td>
+          <td align="center">{{ dars["topic"] }}</td>
+          <td align="center">{{ dars["title"] }}</td>
+          <td align="center">{{ dars["schedule"]["weekly_or_monthly"]}}</td>
+          <td align="center">{{ dars["schedule"]["week_day"]}}</td>
+          <td align="center">{{ dars["schedule"]["am_pm"]}}</td>
+          <td align="center">{{ dars["schedule"]["start_time"]}}</td>
+          <td align="center">{{ dars["schedule"]["end_time"]}}</td>
+      </tr>
+    </table>
+
+      <h2>Location</h2>
+      <iframe src="{{ dars["location"] }}" width="600" height="420" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+    {% endfor %}
+
+  </body>
+
+</html>
