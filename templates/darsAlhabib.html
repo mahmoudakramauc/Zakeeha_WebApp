@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+  
+<h2>{{ deroos_by_scholar_name[0]["scholar_name"] }}</h2>
+{% for dars in deroos_by_scholar_name %}
+  <ul>
+      <ul>
+      <li>{{ dars["title"] }}</li>
+      <li>{{ dars["location"] }}</li>
+      <li>{{ dars["schedule"]["weekly_or_monthly"]}}</li>
+      <li>{{ dars["schedule"]["week_day"]}}</li>
+      <li>{{ dars["schedule"]["am_pm"]}}</li>
+      <li>{{ dars["schedule"]["start_time"]}}</li>
+      <li>{{ dars["schedule"]["end_time"]}}</li>
+
+      </ul>
+    </li>
+  </ul> 
+  {% endfor %}
+  
+
+
+</body>
+</html>
