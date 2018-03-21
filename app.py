@@ -2,7 +2,7 @@
 from flask import Flask, render_template
 from flask_restful import Resource, Api, abort
 from string import Template
-from flask import requests 
+import requests 
 from flask import request
 app = Flask(__name__)
 
