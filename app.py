@@ -7,10 +7,10 @@ from flask import request
 app = Flask(__name__)
 
 
-scholars_details = {'Alhabib ALi Aljifri' : {'imagethumb':'/static/images/thumbs/alhabeebalialjafri.jpg',
+scholars_details = {'alhabib' : {'imagethumb':'/static/images/thumbs/alhabeebalialjafri.jpg',
                                  'imagefull': '/static/images/fulls/alhabeebalialjafri.jpg',
                                  'bio' : 'Chairman of Tabah Foundation Management Board , Abu Dhabi  Member of the Board of Director of Dar Al-Mustafa for Islamic Studies in Tarim http://www.alhabibali.com/en/bio/',   
-                                 'dars': 'Alhabib ALi Aljifri'
+                                 'dars': 'alhabib'
                                 },
                                 
                     'amr elwerdany': { 'imagethumb': '/static/images/thumbs/amrelwerdani.jpg',
