@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+Z# -*- coding: utf-8 -*-
 from flask import Flask, render_template
 from flask_restful import Resource, Api, abort
 from string import Template
@@ -15,21 +15,21 @@ scholars_details = {'alhabib' : {'imagethumb':'/static/images/thumbs/alhabeebali
                                 
                     'amr elwerdany': { 'imagethumb': '/static/images/thumbs/amrelwerdani.jpg',
                                     'imagefull': '/static/images/fulls/amrelwerdani.jpg',
-                                    'bio' : 'http://www.alhabibali.com/ar/bio/',
+                                    'bio' : 'https://www.facebook.com/DrAmrElwrdany/',
                                     'dars': 'amr elwerdany'
   
                                    },
 
                     'muhammad mehanna': { 'imagethumb': '/static/images/thumbs/muhammadmehanna.jpg',
                                           'imagefull': '/static/images/fulls/muhammadmehanna.jpg',
-                                          'bio' : 'http://www.alhabibali.com/ar/bio/',
+                                          'bio' : 'https://www.facebook.com/Prof.Mehanna/',
                                           'dars': 'muhammad mehanna'
   
                                         }, 
 
                     'ali gomaa': { 'imagethumb': '/static/images/thumbs/aligomaa.jpg',
                                           'imagefull': '/static/images/fulls/aligomaa.jpg',
-                                          'bio' : 'http://www.alhabibali.com/ar/bio/',
+                                          'bio' : 'https://www.facebook.com/DrAliGomaa/',
                                           'dars': 'ali gomaa'
   
                                         },                             
