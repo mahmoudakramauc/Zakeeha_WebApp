@@ -29,13 +29,11 @@
                color: #111;
            }
         </style>
-        
-
+      
 
   <body>
    <h2 align="center", style="color:white;"> {{ deroos_by_scholar_name[0]["scholar_name"] }} droos details</h2>
-  {% for dars in deroos_by_scholar_name %}
-
+  {% for dars, day in deroos_info %}
   
 
     <table id="deroos_by_scholar_name">
@@ -56,7 +54,8 @@
           <!-- <td align="center">{{ dars["scholar_name"] }}</td> -->
           <td align="center">{{ dars["topic"] }}</td>
           <td align="center">{{ dars["title"] }}</td>
-          <td align="center">{{ dars["week_day"]}}</td>
+          
+          <td align="center">{{ day }}</td>
           <td align="center">{{ dars["date"]}}</td>
           <td align="center">{{ dars["start_time"]}}</td>
           <td align="center">{{ dars["am_pm"]}}</td>
@@ -66,7 +65,6 @@
   
       </tr>
     </table>
-
       <h2>Location</h2>
       <iframe src="{{ dars["location"] }}" width="600" height="420" frameborder="0" style="border:0" allowfullscreen></iframe>
 

@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from flask_restful import Resource, Api, abort
 from string import Template
 import requests 
+import  datetime  
 from flask import request
 app = Flask(__name__)
 
@@ -95,13 +96,25 @@ def scholarsdetails():
 def deroos_by_scholar_name():
     r = requests.get("https://zakeeha.herokuapp.com/all_deroos")
     scholar_name = request.args.get('my_var', None)
-
+    days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+    deroos_days = []
+    weekday= [] 
     deroos_by_scholar_name = []
     for dars in r.json()["deroos"]:
             if dars["scholar_name"] == scholar_name:
                deroos_by_scholar_name.append(dars)
-    #print (deroos_by_scholar_name)
-    return render_template('deroos_by_scholar_name.html', deroos_by_scholar_name=deroos_by_scholar_name)
+               year, month, day = (int(x) for x in dars["date"].split('-'))
+               weekday.append(datetime.date(year,month,day).weekday())
+    #print (weekday)      
+    #print (days[weekday[0]])
+    for day in weekday:
+    #print (day)
+      deroos_days.append(days[day])          
+    print (deroos_days)
+    deroos_info = zip(deroos_by_scholar_name, deroos_days)
+    print (deroos_info)
+
+    return render_template('deroos_by_scholar_name.html', deroos_by_scholar_name=deroos_by_scholar_name, deroos_info=deroos_info)
 
 @app.route('/scholarnames')
 def scholar_names():
