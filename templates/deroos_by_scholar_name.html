@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head>
-        <title>Dars Details</title>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <title>{{ deroos_by_scholar_name[0]["scholar_name"] }} deroos details</title>
+        
+
         <style>
             body {background-color: #111;}
 
@@ -28,13 +36,28 @@
                background-color: #4EAF50;
                color: #111;
            }
+           .map-responsive{
+               overflow:hidden;
+               padding-bottom:56.25%;
+               position:relative;
+               height:0;
+           }
+            .map-responsive iframe{
+                left:0;
+                top:0;
+                height:100%;
+                width:100%;
+                position:absolute;
+            }
         </style>
       
 
   <body>
-   <h2 align="center", style="color:white;"> {{ deroos_by_scholar_name[0]["scholar_name"] }} droos details</h2>
+   <h2 align="center", style="color:white;"> {{ deroos_by_scholar_name[0]["scholar_name"] }} deroos details</h2>
   {% for dars, day in deroos_info %}
   
+  <br>
+
 
     <table id="deroos_by_scholar_name">
       <tr>
@@ -64,12 +87,21 @@
           <td align="center">{{ dars["weekly_or_monthly"]}}</td>
   
       </tr>
+
     </table>
+    <br>
       <h2>Location</h2>
-      <iframe src="{{ dars["location"] }}" width="600" height="420" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <div class="map-responsive">
+      <br><br><iframe src="{{ dars["location"] }}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div> <br>
+      <br>
 
     {% endfor %}
 
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   </body>
-
 </html>
