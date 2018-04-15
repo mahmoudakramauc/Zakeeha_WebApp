@@ -1,15 +1,48 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+ body {background-color: #111;}
+ul.a {
+    list-style-type: circle;
+}
+ul:hover {background-color: darkslategray ;}
+
+ul.b {
+    list-style-type: square;
+}
+
+ul.c {
+    list-style-type: upper-roman;
+}
+
+ul.d {
+    list-style-type: lower-alpha;`
+}
+ul {
+    border-left: 5px solid green;
+    background-color: #111;
+    list-style-type: none;
+    padding: 10px 20px;
+}
+</style>
+</head>
+
 <body>
 
 
-<h2>Active titles</h2>
+<h2 style="color:green;" >Active title</h2>
 
  	{% for title in titles %}
-	<ul>
-  	<li>{{ title }}</li>
-	</ul> 
+	<Ul class="a">
+  		<li style="color:white;">{{ title }}</li>
+	</Ul>
  	{% endfor %}	
  	
 </body>
 </html>
+
+
+
+
+

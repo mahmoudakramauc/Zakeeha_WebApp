@@ -3,44 +3,67 @@
 <head>
         <title>Dars Details</title>
         <style>
-            table {
+            body {background-color: #111;}
+
+            #deroos_by_scholar_name {
+               font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
                 border-collapse: collapse;
-            }
-            th, td {
-                border: 1px solid orange;
-                padding: 10px;
-            }
+                width: 100%;
+           }
+
+           #deroos_by_scholar_name td ,h2{
+               border: 1px solid #111;
+               padding: 8px;
+               color:white;
+            } 
+
+            #deroos_by_scholar_name tr:nth-child(even){background-color: #111;}
+   
+            #deroos_by_scholar_name tr:hover {background-color: darkslategray ;}
+    
+            #deroos_by_scholar_name th {
+               padding-top: 12px;
+               padding-bottom: 12px;
+               text-align: center;
+               background-color: #4EAF50;
+               color: #111;
+           }
         </style>
-
-
+        
 
 
   <body>
+   <h2 align="center", style="color:white;"> {{ deroos_by_scholar_name[0]["scholar_name"] }} droos details</h2>
   {% for dars in deroos_by_scholar_name %}
 
-  <h2 align="center"> {{ deroos_by_scholar_name[0]["scholar_name"] }} dars details</h2>
+  
 
-    <table>
+    <table id="deroos_by_scholar_name">
       <tr>
-          <th>Scholar Name</th>
+          <!-- <th>Scholar Name</th> -->
           <th>Topic</th>
           <th>Title</th>
-          <th>weekly_or_monthly</th>
           <th>week_day</th>
-          <th>am_pm</th>
+          <th>date</th>  
           <th>start_time</th>
+          <th>am_pm</th>
           <th>end_time</th>
+          <th>am_pm</th>
+          <th>weekly_or_monthly</th>
       </tr>
 
       <tr>
-          <td align="center">{{ dars["scholar_name"] }}</td>
+          <!-- <td align="center">{{ dars["scholar_name"] }}</td> -->
           <td align="center">{{ dars["topic"] }}</td>
           <td align="center">{{ dars["title"] }}</td>
-          <td align="center">{{ dars["schedule"]["weekly_or_monthly"]}}</td>
-          <td align="center">{{ dars["schedule"]["week_day"]}}</td>
-          <td align="center">{{ dars["schedule"]["am_pm"]}}</td>
-          <td align="center">{{ dars["schedule"]["start_time"]}}</td>
-          <td align="center">{{ dars["schedule"]["end_time"]}}</td>
+          <td align="center">{{ dars["week_day"]}}</td>
+          <td align="center">{{ dars["date"]}}</td>
+          <td align="center">{{ dars["start_time"]}}</td>
+          <td align="center">{{ dars["am_pm"]}}</td>
+          <td align="center">{{ dars["end_time"]}}</td>
+          <td align="center">{{ dars["am_pm"]}}</td>
+          <td align="center">{{ dars["weekly_or_monthly"]}}</td>
+  
       </tr>
     </table>
 

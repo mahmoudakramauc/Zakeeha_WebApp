@@ -7,10 +7,10 @@ from flask import request
 app = Flask(__name__)
 
 
-scholars_details = {'alhabib' : {'imagethumb':'/static/images/thumbs/alhabeebalialjafri.jpg',
+scholars_details = {'Alhabib Ali' : {'imagethumb':'/static/images/thumbs/alhabeebalialjafri.jpg',
                                  'imagefull': '/static/images/fulls/alhabeebalialjafri.jpg',
                                  'bio' : 'Chairman of Tabah Foundation Management Board , Abu Dhabi  Member of the Board of Director of Dar Al-Mustafa for Islamic Studies in Tarim http://www.alhabibali.com/en/bio/',   
-                                 'dars': 'alhabib'
+                                 'dars': 'Alhabib Ali'
                                 },
                                 
                     'amr elwerdany': { 'imagethumb': '/static/images/thumbs/amrelwerdani.jpg',
@@ -45,13 +45,16 @@ scholars_details = {'alhabib' : {'imagethumb':'/static/images/thumbs/alhabeebali
 # home page
 @app.route('/')
 def home( ):
-    r = requests.get("https://zakkeeha.herokuapp.com/all_deroos")
-    scholars_active = {}
+   # r = requests.get("http://zakeeha.herokuapp.com/active_deroos")
     scholars_inactive = {}
-    for dars in r.json()["active"]:
+    scholars_active = {}
+    ractive = requests.get("http://zakeeha.herokuapp.com/active_deroos")
+    rinactive = requests.get("http://zakeeha.herokuapp.com/inactive_deroos")
+
+    for dars in ractive.json()["active_deroos"]:
       scholars_active[dars['scholar_name']] = scholars_details[dars['scholar_name']]
     #  print(scholars_active)
-    for dars in r.json()["inactive"]:
+    for dars in rinactive.json()["inactive_deroos"]:
       scholars_inactive[dars['scholar_name']] = scholars_details[dars['scholar_name']]
     #  print(scholars_inactive)
     return render_template('home.html', active_scholars=scholars_active, inactive_scholars=scholars_inactive)
@@ -59,9 +62,9 @@ def home( ):
 # active topics page
 @app.route('/activetitles')
 def titles():
-    r = requests.get("https://zakkeeha.herokuapp.com/all_deroos")
+    r = requests.get("http://zakeeha.herokuapp.com/active_deroos")
     titles =[]
-    for dars in r.json()["active"]:
+    for dars in r.json()["active_deroos"]:
       if dars["title"] not in titles:
          titles.append(dars["title"])
    
@@ -69,9 +72,9 @@ def titles():
 
 @app.route('/activetopics')
 def topics():
-    r = requests.get("https://zakkeeha.herokuapp.com/all_deroos")
+    r = requests.get("http://zakeeha.herokuapp.com/active_deroos")
     topics =[]
-    for dars in r.json()["active"]:
+    for dars in r.json()["active_deroos"]:
       if dars["topic"] not in topics:
          topics.append(dars["topic"])     
     #print(titles)
@@ -79,10 +82,10 @@ def topics():
 
 @app.route('/scholarsdetails')
 def scholarsdetails():
-    r = requests.get("https://zakkeeha.herokuapp.com/all_deroos")
-    scholar_name = "alhabib"
+    r = requests.get("https://zakeeha.herokuapp.com/all_deroos")
+    scholar_name = "Alhabib Ali"
     deroos_by_scholar_name = []
-    for dars in r.json()["active"]:
+    for dars in r.json()["active_deroos"]:
             if dars["scholar_name"] == scholar_name:
                deroos_by_scholar_name.append(dars)
     print(deroos_by_scholar_name)
@@ -90,36 +93,36 @@ def scholarsdetails():
 
 @app.route('/deroos_by_scholar_name')
 def deroos_by_scholar_name():
-    r = requests.get("https://zakkeeha.herokuapp.com/all_deroos")
+    r = requests.get("https://zakeeha.herokuapp.com/all_deroos")
     scholar_name = request.args.get('my_var', None)
 
     deroos_by_scholar_name = []
-    for dars in r.json()["active"]:
+    for dars in r.json()["deroos"]:
             if dars["scholar_name"] == scholar_name:
                deroos_by_scholar_name.append(dars)
-    print (deroos_by_scholar_name)
+    #print (deroos_by_scholar_name)
     return render_template('deroos_by_scholar_name.html', deroos_by_scholar_name=deroos_by_scholar_name)
 
 @app.route('/scholarnames')
 def scholar_names():
-    r = requests.get("https://zakkeeha.herokuapp.com/all_deroos")
+    r = requests.get("http://zakeeha.herokuapp.com/all_scholars")
     scholar_names = []
-    for dars in r.json()["active"]:
+    for dars in r.json()["scholars"]:
       if dars["scholar_name"] not in scholar_names:
-         scholar_names.append(dars["scholar_name"])
-
+         scholar_names.append(dars)
+    print(scholar_names)
     return render_template('scholarnames.html', scholar_names=scholar_names)
 
 
 @app.route('/details')
 def details():
-    r = requests.get("https://zakkeeha.herokuapp.com/all_deroos")
+    r = requests.get("https://zakeeha.herokuapp.com/all_deroos")
     titles =[]
     topics =[]
-    for dars in r.json()["active"]:
+    for dars in r.json()["active_deroos"]:
       if dars["title"] not in titles:
          titles.append(dars["title"])
-    for dars in r.json()["active"]:
+    for dars in r.json()["active_deroos"]:
       if dars["topic"] not in topics:
          topics.append(dars["topic"])
     return render_template('sidemenu.html', titles=titles, topics=topics)
