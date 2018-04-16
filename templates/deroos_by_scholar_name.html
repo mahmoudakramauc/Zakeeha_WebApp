@@ -73,13 +73,11 @@
           <!-- <th>Scholar Name</th> -->
           <th>Topic</th>
           <th>Title</th>
-          <th>week_day</th>
-          <th>date</th>  
-          <th>start_time</th>
-          <th>am_pm</th>
-          <th>end_time</th>
-          <th>am_pm</th>
-          <th>frequency</th>
+          <th>Week Day</th>
+          <th>Date</th>  
+          <th>Start_time</th>
+          <th>End_time</th>
+          <th>Frequency</th>
       </tr>
 
       <tr>
@@ -88,11 +86,9 @@
           <td align="center">{{ dars["title"] }}</td>
           
           <td align="center">{{ day }}</td>
-          <td align="center">{{ dars["date"]}}</td>
-          <td align="center">{{ dars["start_time"]}}</td>
-          <td align="center">{{ dars["am_pm"]}}</td>
-          <td align="center">{{ dars["end_time"]}}</td>
-          <td align="center">{{ dars["am_pm"]}}</td>
+          <td align="center">{{ dars["date"] }}</td>
+          <td align="center">{{ dars["start_time"] + " " + dars["am_pm"] }}</td>
+          <td align="center">{{ dars["end_time"] + " " + dars["am_pm"] }}</td>
           <td align="center">{{ dars["weekly_or_monthly"]}}</td>
   
       </tr>
