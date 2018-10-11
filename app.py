@@ -46,10 +46,10 @@ scholars_details = {'Alhabib Ali' : {'imagethumb':'/static/images/thumbs/alhabee
 # home page
 @app.route('/')
 def home( ):
-#r = requests.get("http://zakeeha.herokuapp.com/active_deroos")
+r = requests.get("http://zakeeha.herokuapp.com/active_deroos")
 
 # declaring empty arrays for both active and inactive droos
-#   scholars_inactive = {}
+   scholars_inactive = {}
     scholars_active = {}
 # getting active droos from the API in JSON formate 
     ractive = requests.get("http://zakeeha.herokuapp.com/active_deroos")
@@ -59,10 +59,10 @@ def home( ):
     for dars in ractive.json()["active_deroos"]:
       scholars_active[dars['scholar_name']] = scholars_details[dars['scholar_name']]
     #  print(scholars_active)
-#    for dars in rinactive.json()["inactive_deroos"]:
-#    scholars_inactive[dars['scholar_name']] = scholars_details[dars['scholar_name']]
+   for dars in rinactive.json()["inactive_deroos"]:
+       scholars_inactive[dars['scholar_name']] = scholars_details[dars['scholar_name']]
     #  print(scholars_inactive)
-    return render_template('home.html', active_scholars=scholars_active)
+    return render_template('home.html', active_scholars=scholars_active, inactive_scholsrs = active_scholars)
 
 # active topics page
 @app.route('/activetitles')
