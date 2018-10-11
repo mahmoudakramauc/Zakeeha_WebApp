@@ -7,7 +7,7 @@ import  datetime
 from flask import request
 app = Flask(__name__)
 
-
+# scholars_details
 scholars_details = {'Alhabib Ali' : {'imagethumb':'/static/images/thumbs/alhabeebalialjafri.jpg',
                                  'imagefull': '/static/images/fulls/alhabeebalialjafri.jpg',
                                  'bio' : 'Chairman of Tabah Foundation Management Board , Abu Dhabi  Member of the Board of Director of Dar Al-Mustafa for Islamic Studies in Tarim http://www.alhabibali.com/en/bio/',   
@@ -46,19 +46,23 @@ scholars_details = {'Alhabib Ali' : {'imagethumb':'/static/images/thumbs/alhabee
 # home page
 @app.route('/')
 def home( ):
-   # r = requests.get("http://zakeeha.herokuapp.com/active_deroos")
-    scholars_inactive = {}
-    scholars_active = {}
-    ractive = requests.get("http://zakeeha.herokuapp.com/active_deroos")
-    rinactive = requests.get("http://zakeeha.herokuapp.com/inactive_deroos")
+#r = requests.get("http://zakeeha.herokuapp.com/active_deroos")
 
+# declaring empty arrays for both active and inactive droos
+#   scholars_inactive = {}
+    scholars_active = {}
+# getting active droos from the API in JSON formate 
+    ractive = requests.get("http://zakeeha.herokuapp.com/active_deroos")
+# getting inactive droos from the API in JSON formate
+#   rinactive = requests.get("http://zakeeha.herokuapp.com/inactive_deroos")
+# looping on 
     for dars in ractive.json()["active_deroos"]:
       scholars_active[dars['scholar_name']] = scholars_details[dars['scholar_name']]
     #  print(scholars_active)
-    for dars in rinactive.json()["inactive_deroos"]:
-      scholars_inactive[dars['scholar_name']] = scholars_details[dars['scholar_name']]
+#    for dars in rinactive.json()["inactive_deroos"]:
+#    scholars_inactive[dars['scholar_name']] = scholars_details[dars['scholar_name']]
     #  print(scholars_inactive)
-    return render_template('home.html', active_scholars=scholars_active, inactive_scholars=scholars_inactive)
+    return render_template('home.html', active_scholars=scholars_active)
 
 # active topics page
 @app.route('/activetitles')
